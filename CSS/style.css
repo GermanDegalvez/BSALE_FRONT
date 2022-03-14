@@ -1,0 +1,19 @@
+body {
+    background-color: #e0dede;
+}
+
+p {
+    font-size: larger;
+}
+
+option {
+    text-transform: capitalize;
+}
+
+select {
+    text-transform: capitalize;
+}
+
+#dropdownButton {
+    text-transform: capitalize;
+}
