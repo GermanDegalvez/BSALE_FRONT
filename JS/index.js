@@ -4,8 +4,6 @@ import { dropMenu } from './components/dropMenu.js';
 
 const spinner = document.querySelector("#spinner"); //spinner mientras cargan las peticiones
 
-//https://bsaletestgermandegalvez.herokuapp.com
-
 
 $.ajax({
     url: "https://bsaletestgermandegalvez.herokuapp.com/getProductsById", //se obtienen todos los productos
@@ -17,14 +15,13 @@ $.ajax({
     success: function(res) {
        
         setTimeout( () => renderCard(res), 500); //se ejecuta funcion que renderiza las tarjetas
-                                                 //settimeout para que se parecie el estilo de carga   
+                                                 //settimeout para que se aprecie el estilo de carga   
        
     },
     error: function (xhr, ajaxOptions, thrownError){
         console.log(xhr, 'xhr');
         console.log(ajaxOptions, 'ajaxopt');
         console.log(thrownError, 'throerror');
-        document.write('internal server error')
     }
 });
 
@@ -44,7 +41,6 @@ $.ajax({
         console.log(xhr, 'xhr');
         console.log(ajaxOptions, 'ajaxopt');
         console.log(thrownError, 'throerror');
-        document.write('internal server error')
     }
 });
 
@@ -59,16 +55,14 @@ function postWord( value ) {
         success: function(res) {
             spinner.style.display = "block";
             document.getElementById('stencil').innerHTML = '';
-            console.log(res);
             setTimeout( () => renderCard(res), 500);
     },
         error: function ( xhr, ajaxOptions, thrownError ) {
-            alert('No se han encontrado resultados para su busqueda. Por favor intente otra palabra.');
+            notFoundAlert();
             document.getElementById("value").value = "";
-            // console.log(xhr, 'xhr');
-            // console.log(ajaxOptions, 'ajaxopt');
-            // console.log(thrownError, 'throerror');
-            // document.write('internal server error')
+            console.log(xhr, 'xhr');
+            console.log(ajaxOptions, 'ajaxopt');
+            console.log(thrownError, 'throerror');
         } 
     });
 }
@@ -77,7 +71,11 @@ function postWord( value ) {
 document.getElementById("formulario").addEventListener("click", function(event){
     event.preventDefault();
     let value = document.getElementById("value").value;
-    postWord(value);
+    if (value === ""){
+        notWordAlert()
+    } else {
+        postWord(value);
+    }
   });
 
 document.getElementById("select").addEventListener("change", function(){
@@ -85,5 +83,5 @@ document.getElementById("select").addEventListener("change", function(){
     postWord(value);
   });
 
-
  
+
