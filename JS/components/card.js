@@ -14,7 +14,7 @@ function renderCard( products ) {
       imagen = `${element.url_image}`;
     }
     $("#stencil").append(`
-    <div class="col-md-3 col-sm-6 my-2 d-flex animate__animated animate__fadeInLeft animate__fast	1000ms">
+    <div class="justify-content-center col-md-3 col-sm-6 my-2 d-flex animate__animated animate__fadeInLeft animate__fast	1000ms">
       <div class="card" style="width: 300px;">
       <div class="card-body">
         <img style="height: 17em;" src=${imagen} class="card-img-top" alt="">

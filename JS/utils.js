@@ -1,3 +1,4 @@
+//Se definen las funciones de alertas para ser usadas como control de errores
 function cartAlert() {
     Swal.fire({
         title: 'El producto se ha agregado a tu carrito de compras!',

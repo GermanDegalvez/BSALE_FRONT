@@ -19,9 +19,9 @@ $.ajax({
        
     },
     error: function (xhr, ajaxOptions, thrownError){
-        console.log(xhr, 'xhr');
-        console.log(ajaxOptions, 'ajaxopt');
-        console.log(thrownError, 'throerror');
+        console.error(xhr, 'xhr');
+        console.error(ajaxOptions, 'ajaxopt');
+        console.error(thrownError, 'throerror');
     }
 });
 
@@ -38,9 +38,9 @@ $.ajax({
         dropMenu(res); //se llama la funcion que que genera los selects
     },
     error: function (xhr, ajaxOptions, thrownError){
-        console.log(xhr, 'xhr');
-        console.log(ajaxOptions, 'ajaxopt');
-        console.log(thrownError, 'throerror');
+        console.error(xhr, 'xhr');
+        console.error(ajaxOptions, 'ajaxopt');
+        console.error(thrownError, 'throerror');
     }
 });
 
@@ -60,14 +60,11 @@ function postWord( value ) {
         error: function ( xhr, ajaxOptions, thrownError ) {
             notFoundAlert();
             document.getElementById("value").value = "";
-            console.log(xhr, 'xhr');
-            console.log(ajaxOptions, 'ajaxopt');
-            console.log(thrownError, 'throerror');
         } 
     });
 }
 
-
+//Se captura el elemento html del formulario y se le asigna una función
 document.getElementById("formulario").addEventListener("click", function(event){
     event.preventDefault();
     let value = document.getElementById("value").value;
@@ -78,6 +75,7 @@ document.getElementById("formulario").addEventListener("click", function(event){
     }
   });
 
+//Se captura el elemento html del select y se le asigna una función
 document.getElementById("select").addEventListener("change", function(){
     let value = document.getElementById("select").value;
     postWord(value);
