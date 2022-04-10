@@ -2,6 +2,7 @@
 import { renderCard } from './components/card.js';
 import { dropMenu } from './components/dropMenu.js';
 
+let productList = []; //se inicializa una variable vacia para que esta quede fuera del scope de las peticions html
 const spinner = document.querySelector("#spinner"); //spinner mientras cargan las peticiones
 
 
@@ -13,10 +14,9 @@ $.ajax({
         "Access-Control-Allow-Origin": "*",
       },
     success: function(res) {
-       
-        setTimeout( () => renderCard(res), 500); //se ejecuta funcion que renderiza las tarjetas
-                                                 //settimeout para que se aprecie el estilo de carga   
-       
+        productList = res;
+        setTimeout( () => renderCard(productList), 500); //se ejecuta funcion que renderiza las tarjetas
+                                                 //settimeout para que se aprecie el estilo de carga 
     },
     error: function (xhr, ajaxOptions, thrownError){
         console.error(xhr, 'xhr');
@@ -24,7 +24,6 @@ $.ajax({
         console.error(thrownError, 'throerror');
     }
 });
-
 
 //Esta funcion hace una peticion para obetener las categorias y rellenar el select
 $.ajax({
@@ -53,9 +52,10 @@ function postWord( value ) {
         dataType: 'json',
         data: word,
         success: function(res) {
+            productList = res;
             spinner.style.display = "block";
             document.getElementById('stencil').innerHTML = '';
-            setTimeout( () => renderCard(res), 500);
+            setTimeout( () => renderCard(productList), 500);
     },
         error: function ( xhr, ajaxOptions, thrownError ) {
             notFoundAlert();
@@ -69,7 +69,7 @@ document.getElementById("formulario").addEventListener("click", function(event){
     event.preventDefault();
     let value = document.getElementById("value").value;
     if (value === ""){
-        notWordAlert()
+        notWordAlert();
     } else {
         postWord(value);
     }
@@ -81,5 +81,41 @@ document.getElementById("select").addEventListener("change", function(){
     postWord(value);
   });
 
- 
+//Select que controla la funcionalidad del select order
+document.getElementById("order").addEventListener("change", function(){
+      ordenar(productList);
+});
 
+ //Funcion para ordenar el arreglo segun valor seleccionado
+function ordenar(response) {
+    let value = document.getElementById("order").value;
+    spinner.style.display = "block";
+    switch (value) {
+
+        case 'alfabetic':
+            document.getElementById('stencil').innerHTML = '';
+            setTimeout( () => renderCard(
+                response.sort(function (a, b) {
+                    if (a.name > b.name) {
+                    return 1;
+                    }
+                    if (a.name < b.name) {
+                    return -1;
+                    }
+                    return 0;
+                })
+            ) , 200);
+        break;
+
+        case 'priceAsc':
+            document.getElementById('stencil').innerHTML = '';      
+            setTimeout( () => renderCard(response.sort((a,b)=>a.price-b.price)), 200);
+        break;
+
+        case 'priceDesc':
+            document.getElementById('stencil').innerHTML = '';      
+            setTimeout( () => renderCard(response.sort((a,b)=>b.price-a.price)), 200);
+        break;
+    }
+};
+    

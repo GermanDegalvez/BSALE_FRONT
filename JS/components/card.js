@@ -5,8 +5,11 @@ const spinner = document.querySelector("#spinner");
 
 function renderCard( products ) {
   products.forEach(element => {
+    //Damos formato al precio
+    let price = element.price
+    let numberFormat = new Intl.NumberFormat("es-CL", {style: 'currency', currency:'CLP'} ).format(price);
     //Hay imagenes cuyos link estan caidos, por lo que se controla este error 
-    //y se renderiza una imagen de "Imagen no encontrada" 
+    //y se renderiza una imagen de "Imagen no encontrada"
     let imagen = '';
     if( element.url_image === null || element.url_image === '' ){ 
       imagen = "https://blogdigital.es/wp-content/uploads/2015/09/imagen-no-encontrada.jpg"
@@ -23,7 +26,7 @@ function renderCard( products ) {
         <hr>
         <div class="px-3">
         <div class="float-start">
-          <p class="text-muted">$${element.price}</p>
+          <p class="text-muted">${numberFormat}</p>
           </div>
             <div class="float-end">
               <button type="button" class="btn btn-secondary rounded-circle" onclick="cartAlert()">

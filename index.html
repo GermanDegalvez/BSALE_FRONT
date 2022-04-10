@@ -23,16 +23,28 @@
       </a>
 
   <!-- Buscador por categoria -->
-      <div class="d-flex">
+      <div class="d-flex col-md-3 col-sm-12">
         <form class="">
-          <select class="form-select" id="select" placeholder="Seleccione su copete">
+          <select class="form-select" id="select" placeholder="Seleccione una categoria">
             <option value="sin valor" disabled selected>Seleccione una categoria</option>
+          </select>
+        </form>
+    </div>
+  
+    <!-- Ordenador -->
+      <div class="d-flex col-md-3 col-sm-12">
+        <form class="">
+          <select class="form-select" id="order" placeholder="Ordenar por...">
+            <option value="sin valor" disabled selected>Ordenar por</option>
+            <option value="alfabetic">Alfabético</option>
+            <option value="priceAsc">Precio Asc.</option>
+            <option value="priceDesc">Precio Desc.</option>
           </select>
         </form>
     </div>
 
     <!-- Formulario que buscar por palabras (tambien admite categorias) -->
-      <form class="d-flex float-end">
+      <form class="d-flex float-end col-md-3 col-sm-12">
           <input id="value" class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
           <button id="formulario" class="btn rounded-circle" type="submit" onclick="">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -40,10 +52,8 @@
             </svg>
           </button>
       </form>
-
     </div>
   </nav>
-
   
 
   <!-- Div donde se renderizan las tarjetas -->
@@ -64,6 +74,7 @@
 
     <!-- SweetAlert -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
     <!-- jquery -->
