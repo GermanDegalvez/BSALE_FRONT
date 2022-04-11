@@ -72,6 +72,8 @@ document.getElementById("formulario").addEventListener("click", function(event){
         notWordAlert();
     } else {
         postWord(value);
+        document.getElementById("order").selectedIndex = 0;
+        document.getElementById("select").selectedIndex = 0;
     }
   });
 
@@ -79,6 +81,7 @@ document.getElementById("formulario").addEventListener("click", function(event){
 document.getElementById("select").addEventListener("change", function(){
     let value = document.getElementById("select").value;
     postWord(value);
+    document.getElementById("order").selectedIndex = 0;
   });
 
 //Select que controla la funcionalidad del select order
